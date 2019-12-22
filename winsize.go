@@ -6,6 +6,10 @@
 // +build amd64,arm
 package winsize
 
+import (
+	"fmt"
+)
+
 // Size is the go implementation of the structure used by ioctl.
 // The original struct used by these ioctls is defined as
 // struct winsize {
@@ -19,4 +23,9 @@ type Size struct {
 	Col uint16
 	X   uint16 // unused
 	Y   uint16 // unused
+}
+
+// String fits the fmt.Strinter interface
+func (s *Size) String() string {
+	return fmt.Sprintf("ws_row: %d, ws_col: %d", s.Row, s.Col)
 }
